@@ -8,8 +8,6 @@ class TestMAFReader:
     @pytest.fixture(autouse=True)
     def filespath(self):
         return {
-            # "gzip": join("data", "test_data.maf.gz"),
-            # "default": join("data", "test_data.maf")
             "gzip": join(dirname(__file__), "data", "test_data.maf.gz"),
             "default": join(dirname(__file__), "data", "test_data.maf")
         }
