@@ -1,3 +1,4 @@
+from posixpath import dirname
 from maf import MAFReader
 from os.path import join
 import pytest
@@ -9,8 +10,8 @@ class TestMAFReader:
         return {
             # "gzip": join("data", "test_data.maf.gz"),
             # "default": join("data", "test_data.maf")
-            "gzip": join("/home/zeyadk/maf/tests/data/test_data.maf.gz"),
-            "default": join("/home/zeyadk/maf/tests/data/test_data.maf")
+            "gzip": join(dirname(__file__), "data", "test_data.maf.gz"),
+            "default": join(dirname(__file__), "data", "test_data.maf")
         }
 
     def test_compressed(self, filespath):
@@ -47,5 +48,6 @@ class TestMAFReader:
 
     def test_bulk_cols_read(self, filespath):
         cols = ["Hugo_Symbol", "Entrez_Gene_Id", "CENTERS", "NCALLERS"]
-        iter = MAFReader(filespath["gzip"], compression="gzip").read(use_cols=cols)
+        iter = MAFReader(filespath["gzip"],
+                         compression="gzip").read(use_cols=cols)
         assert len(next(iter)[0]) == len(cols)
