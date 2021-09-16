@@ -1,5 +1,5 @@
 from posixpath import dirname
-from maf import MAFReader
+from mafio import MAFReader
 from os.path import join
 import pytest
 

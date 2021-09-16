@@ -1,4 +1,4 @@
-# MAF
+# MAFIO
 
 A minimalist Python package for reading and writing [MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/#:~:text=Mutation%20Annotation%20Format%20(MAF)%20is,(or%20open-access).) files.
 
@@ -6,7 +6,7 @@ A minimalist Python package for reading and writing [MAF](https://docs.gdc.cance
 
 ## Read
 ```py
-from maf import MAFReader
+from mafio import MAFReader
 
 reader = MAFReader("test.maf")
 
@@ -33,7 +33,7 @@ print(next(data)) #[[7,8,9]]
 ```
 ## Write
 ```py
-from maf import MAFWriter
+from mafio import MAFWriter
 
 cols = ['col1', 'col2', 'col3']
 row1 = [1,2,3]
