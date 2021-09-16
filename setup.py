@@ -3,7 +3,7 @@ from distutils.core import setup
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-setup(name='maf',
+setup(name='maf-tools',
       version='0.3',
       description='A package for maf files io',
       long_description=long_description,
