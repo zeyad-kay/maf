@@ -3,6 +3,13 @@ import gzip
 
 class MAFReader:
     def __init__(self, path, compression=None):
+        """Reader instance responsible for reading the file.
+
+        Args:
+            path (): Path to file to read from.
+            compression (string, optional): Compression of file.
+            Currently supports gzip. Defaults to None.
+        """
         self.path = path
         self._parsers = {
             "gzip": gzip.open,
@@ -15,6 +22,19 @@ class MAFReader:
             self._parser = self._parsers["native"]
 
     def read(self, chunk_size=None, use_cols=None, raw=False):
+        """Read MAF file data into a list containing the values
+
+        Args:
+            chunk_size (int, optional): Read the file in chunks.
+            Useful with very large datasets. Defaults to None.
+            use_cols (list, optional): Extract only values corresponding to the
+            list of columns given. Defaults to None.
+            raw (bool, optional): Format raw data by removing the tabs from column values.
+            Defaults to False.
+
+        Yields:
+            list: list of rows
+        """
         with self._parser(self.path, "rb") as file:
             # columns are always on the first row
             row = file.readline()
