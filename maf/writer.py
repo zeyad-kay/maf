@@ -18,8 +18,12 @@ class MAFWriter:
         else:
             self._parser = self._parsers["native"]
 
-    def write(self, data):
-        with self._parser(self.path, "wb") as file:
+    def write(self, data, append=False):
+        mode = "rb"
+        if append:
+            mode= "ab"
+        
+        with self._parser(self.path, mode) as file:
             raw_data = ""
             for row in data:
                 raw_data = raw_data + \
