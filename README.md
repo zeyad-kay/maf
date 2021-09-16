@@ -2,6 +2,11 @@
 
 A minimalist Python package for reading and writing [MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/#:~:text=Mutation%20Annotation%20Format%20(MAF)%20is,(or%20open-access).) files.
 
+# Installation
+Package can be installed using pip.
+```sh
+> pip install mafio
+```
 # Usage
 
 ## Read
@@ -50,4 +55,18 @@ writer.write(data)
 
 # for appending the file
 writer.write(data, append=True)
+```
+
+# Tests
+Clone the library.
+```sh
+> git clone https://github.com/zeyad-kay/mafio.git
+```
+Install test dependencies.
+```sh
+pip install -r test-requirements.txt
+```
+Run tests.
+```sh
+> pytest mafio/tests
 ```
