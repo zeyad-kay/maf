@@ -38,7 +38,7 @@ print(next(data)) #[[7,8,9]]
 ```
 ## Write
 ```py
-from mafio import MAFWriter
+from mafio import write
 
 cols = ['col1', 'col2', 'col3']
 row1 = [1,2,3]
@@ -47,13 +47,13 @@ row3 = [7,8,9]
 data = [cols, row1, row2, row3]
 
 # Creates file if not exists
-writer.write("test.maf", data)
+write("test.maf", data)
 
 # Appending the file instead of overwriting
-writer.write("test.maf", data, append=True)
+write("test.maf", data, append=True)
 
 # pass a 
-writer.write("test.maf.gz", data)
+write("test.maf.gz", data)
 ```
 
 # Tests
