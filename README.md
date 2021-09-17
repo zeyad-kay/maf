@@ -46,15 +46,14 @@ row1 = [4,5,6]
 row1 = [7,8,9]
 data = [cols, row1, row2, row3]
 
-writer = MAFWriter("test.maf")
+# Creates file if not exists
+writer.write("test.maf", data)
 
-# you can also compress the data
-writer = MAFWriter("test.maf", compression='gzip')
+# Appending the file instead of overwriting
+writer.write("test.maf", data, append=True)
 
-writer.write(data)
-
-# for appending the file
-writer.write(data, append=True)
+# pass a 
+writer.write("test.maf.gz", data)
 ```
 
 # Tests
