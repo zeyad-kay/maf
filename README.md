@@ -42,8 +42,8 @@ from mafio import MAFWriter
 
 cols = ['col1', 'col2', 'col3']
 row1 = [1,2,3]
-row1 = [4,5,6]
-row1 = [7,8,9]
+row2 = [4,5,6]
+row3 = [7,8,9]
 data = [cols, row1, row2, row3]
 
 # Creates file if not exists
