@@ -25,5 +25,5 @@ def write(path, data, append=False):
         raw_data = ""
         for row in data:
             raw_data = raw_data + \
-                "".join([val + "\t" for val in row]).rstrip("\t") + "\n"
+                "".join([str(val) + "\t" for val in row]).rstrip("\t") + "\n"
         file.write(raw_data.encode())
