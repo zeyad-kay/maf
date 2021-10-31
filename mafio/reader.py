@@ -81,9 +81,10 @@ class MAFReader:
                         rows.append(row)
                 # End of file
                 else:
+                    if len(rows) == 0:
+                        return
                     yield rows
                     return
-
             yield rows
 
     def __format_row(self, row):

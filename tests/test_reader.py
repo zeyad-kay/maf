@@ -31,6 +31,12 @@ class TestMAFReader:
         assert len(next(iter)) == 2
         with pytest.raises(StopIteration):
             next(iter)
+    def test_single_chunk_read(self, filespath):
+        CHUNK = 1
+        iter = MAFReader(filespath["gzip"], compression="gzip").read(CHUNK)
+        [next(iter) for _ in range(6)]
+        with pytest.raises(StopIteration):
+            next(iter)
 
     def test_chunk_cols_read(self, filespath):
         CHUNK = 4
