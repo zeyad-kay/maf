@@ -15,26 +15,26 @@ class TestMAFReader:
     def test_compressed(self, filespath):
         iter = MAFReader(filespath["gzip"], compression="gzip").read()
         data = next(iter)
-        assert len(data) == 6
+        assert len(data) == 7
         assert len(data[0]) == 114
 
     def test_decompressed(self, filespath):
         iter = MAFReader(filespath["default"], compression=None).read()
         data = next(iter)
-        assert len(data) == 6
+        assert len(data) == 7
         assert len(data[0]) == 114
 
     def test_chunk_read(self, filespath):
         CHUNK = 4
         iter = MAFReader(filespath["gzip"], compression="gzip").read(CHUNK)
         assert len(next(iter)) == 4
-        assert len(next(iter)) == 2
+        assert len(next(iter)) == 3
         with pytest.raises(StopIteration):
             next(iter)
     def test_single_chunk_read(self, filespath):
         CHUNK = 1
         iter = MAFReader(filespath["gzip"], compression="gzip").read(CHUNK)
-        [next(iter) for _ in range(6)]
+        [next(iter) for _ in range(7)]
         with pytest.raises(StopIteration):
             next(iter)
 
@@ -48,7 +48,7 @@ class TestMAFReader:
 
     def test_bulk_read(self, filespath):
         iter = MAFReader(filespath["gzip"], compression="gzip").read()
-        assert len(next(iter)) == 6
+        assert len(next(iter)) == 7
 
     def test_bulk_cols_read(self, filespath):
         cols = ["Hugo_Symbol", "Entrez_Gene_Id", "CENTERS", "NCALLERS"]
