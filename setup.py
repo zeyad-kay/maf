@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(name='mafio',
-      version='0.9',
+      version='1.0.0',
       description='A package for maf files io',
       long_description=long_description,
       long_description_content_type="text/markdown",

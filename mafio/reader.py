@@ -41,31 +41,24 @@ class MAFReader:
                 yield from self.__read_bulk(file, use_cols)
 
     def __read_bulk(self, file, use_cols=None):
-
+        # get column names
+        self.headers = self.__format_row(file.readline())
+        
         if use_cols:
-            rows = []
-            for i,row in enumerate(file.readlines()):
-                row = self.__format_row(row)
-                
-                # get column names
-                if i == 0:
-                    self.headers = row
-                
-                # pick desired columns
-                indices = [self.headers.index(col) for col in use_cols]
+            # pick desired columns
+            indices = [self.headers.index(col) for col in use_cols]
+            self.headers = [self.headers[index] for index in indices]
+            rows = [self.headers]
+            for row in file.readlines():
+                row = self.__format_row(row)                
                 rows.append([row[index] for index in indices])
         else:
-            rows = [self.__format_row(row) for row in file.readlines()]
+            rows = [self.headers]
+            [rows.append(self.__format_row(row)) for row in file.readlines()]
 
         yield rows
 
     def __read_chunks(self, file, chunk_size=1024, use_cols=None):
-
-        if use_cols:
-            self.headers = self.__format_row(file.readline())
-            indices = [self.headers.index(col) for col in use_cols]
-        else:
-            indices = None
 
         while True:
             rows = []
@@ -73,7 +66,10 @@ class MAFReader:
                 row = file.readline()
                 if row:
                     row = self.__format_row(row)
-                    if indices:
+                    if not self.headers:
+                        self.headers = row
+                    if use_cols:
+                        indices = [self.headers.index(col) for col in use_cols]
                         rows.append([row[index] for index in indices])
                     else:
                         rows.append(row)
