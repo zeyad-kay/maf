@@ -52,7 +52,7 @@ write("test.maf", data)
 # Appending the file instead of overwriting
 write("test.maf", data, append=True)
 
-# pass a 
+# gzip the file
 write("test.maf.gz", data)
 ```
 
